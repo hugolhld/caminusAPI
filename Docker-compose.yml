@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+  postgres:
+    image: "postgres:12"
+    environment:
+      POSTGRES_DB: "singapour"
+      POSTGRES_USER: "singapour"
+      POSTGRES_PASSWORD: "singapour"
+    volumes:
+      - singapour:/var/lib/postgresql/dats
+    ports:
+      - 5432:5432
+
+volumes:
+  singapour:
