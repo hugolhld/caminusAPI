@@ -1,4 +1,6 @@
-// require('dotenv').config()
+require('dotenv').config()
+
+const PORT = process.env.PORT || 3000
 
 const express = require('express')
 const app = express()
@@ -7,8 +9,8 @@ app.use(express.json())
 const knex = require('knex')({
     client: 'pg',
     connection: {
-        // connectionString: process.env.DATABASE_URL,
-        connectionString: "postgres://xpglmwgulqptyt:81989c33d3899f7b122c5fce81d7b5ccec0c9b1de5941a19d57641d7dbe9158e@ec2-79-125-64-18.eu-west-1.compute.amazonaws.com:5432/dbm281oc04it1o",
+        connectionString: process.env.DATABASE_URL,
+        // connectionString: "postgres://xpglmwgulqptyt:81989c33d3899f7b122c5fce81d7b5ccec0c9b1de5941a19d57641d7dbe9158e@ec2-79-125-64-18.eu-west-1.compute.amazonaws.com:5432/dbm281oc04it1o",
         ssl:{
             rejectUnauthorized: false,
         },
@@ -551,4 +553,4 @@ app.get('/paris/line/:line', async function(req, res){
 })
 
 
-app.listen(3000)
+app.listen(PORT)
