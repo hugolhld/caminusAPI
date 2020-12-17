@@ -344,6 +344,34 @@ app.get('/paris/bus_stop/p/:postal_code', async function(req, res){
     })
 })
 
+// app.get('/paris/bus_stop/l/:line', async function(req, res){
+
+//     console.log('bus services service no')
+
+//     let rows = []
+
+//     try {
+//         rows = await knex.select('*')
+//             .from('accessibilite-des-arrets-de-bus-ratp')
+//             .where({
+//                 Ligne: req.params.line
+//             })
+//     } catch (err) {
+//         console.log('error: ' + err);
+//         return res.status(500).json({
+//             statusCode: 500,
+//             message: 'Erro 500',
+//         })
+//     }
+
+//     return res.status(200).json({
+//         statusCode: 200,
+//         message: 'Success',
+//         // data: rows,
+//         data: rows.length === 0 ? null : rows,
+//     })
+// })
+
 app.get('/paris/traffic_per_station/:year', async function(req, res){
 
     console.log('traffic_per_station ')
@@ -389,6 +417,136 @@ app.get('/paris/access_stop_bus', async function(req, res){
         statusCode: 200,
         message: 'Success',
         rows
+    })
+})
+
+app.get('/paris/access_stop_bus/:line', async function(req, res){
+
+    console.log('bus services service no')
+
+    let rows = []
+
+    try {
+        rows = await knex.select('*')
+            .from('accessibilite-des-arrets-de-bus-ratp')
+            .where({
+                Ligne: req.params.line
+            })
+    } catch (err) {
+        console.log('error: ' + err);
+        return res.status(500).json({
+            statusCode: 500,
+            message: 'Erro 500',
+        })
+    }
+
+    return res.status(200).json({
+        statusCode: 200,
+        message: 'Success',
+        // data: rows,
+        data: rows.length === 0 ? null : rows,
+    })
+})
+
+app.get('/paris/metro_rer_stop', async function(req, res){
+
+    console.log('paris bus stop get')
+
+    let rows = []
+
+    try {
+        rows = await knex.select('*').from('accessibilite_des_gares_et_stations_metro_et_rer_ratp_csv')
+    } catch (err) {
+        console.log('error: ' + err);
+        return res.status(500).json({
+            statusCode: 500,
+            message: 'Erro 500',
+        })
+    }
+    
+    return res.status(200).json({
+        statusCode: 200,
+        message: 'Success',
+        rows
+    })
+})
+
+app.get('/paris/metro_rer_stop/:postal_code', async function(req, res){
+
+    console.log('bus services service no')
+
+    let rows = []
+
+    try {
+        rows = await knex.select('*')
+            .from('accessibilite_des_gares_et_stations_metro_et_rer_ratp_csv')
+            .where({
+                codeinsee: req.params.postal_code
+            })
+    } catch (err) {
+        console.log('error: ' + err);
+        return res.status(500).json({
+            statusCode: 500,
+            message: 'Erro 500',
+        })
+    }
+
+    return res.status(200).json({
+        statusCode: 200,
+        message: 'Success',
+        // data: rows,
+        data: rows.length === 0 ? null : rows,
+    })
+})
+
+app.get('/paris/line', async function(req, res){
+
+    console.log('paris bus stop get')
+
+    let rows = []
+
+    try {
+        rows = await knex.select('*').from('accessibilite_des_lignes_du_reseau_de_surface_ratp_csv')
+    } catch (err) {
+        console.log('error: ' + err);
+        return res.status(500).json({
+            statusCode: 500,
+            message: 'Erro 500',
+        })
+    }
+    
+    return res.status(200).json({
+        statusCode: 200,
+        message: 'Success',
+        rows
+    })
+})
+
+app.get('/paris/line/:line', async function(req, res){
+
+    console.log('bus services service no')
+
+    let rows = []
+
+    try {
+        rows = await knex.select('*')
+            .from('accessibilite_des_lignes_du_reseau_de_surface_ratp_csv')
+            .where({
+                line: req.params.line
+            })
+    } catch (err) {
+        console.log('error: ' + err);
+        return res.status(500).json({
+            statusCode: 500,
+            message: 'Erro 500',
+        })
+    }
+
+    return res.status(200).json({
+        statusCode: 200,
+        message: 'Success',
+        // data: rows,
+        data: rows.length === 0 ? null : rows,
     })
 })
 
